@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1006130066125",
+    "project_id": "smart-women-safety-app-b1988",
+    "storage_bucket": "smart-women-safety-app-b1988.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006130066125:android:3141c9648f3c78d4e12f84",
+        "android_client_info": {
+          "package_name": "com.example.smart_safety_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChOh0tTNSviSn2Z13Jipr33tEmFCJKewI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

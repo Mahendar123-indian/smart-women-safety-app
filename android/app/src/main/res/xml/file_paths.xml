@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- android/app/src/main/res/xml/file_paths.xml -->
+<!-- Required by FileProvider (declared in AndroidManifest.xml) -->
+<!-- Camera plugin uses this to share captured photo/video temp file URIs -->
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- App-specific internal cache (camera plugin writes here by default) -->
+    <cache-path
+        name="cache"
+        path="." />
+
+    <!-- App-specific external cache (some OEMs write here) -->
+    <external-cache-path
+        name="external_cache"
+        path="." />
+
+    <!-- App-specific external files (video recordings can be large) -->
+    <external-files-path
+        name="external_files"
+        path="." />
+
+    <!-- Internal app files directory -->
+    <files-path
+        name="files"
+        path="." />
+
+    <!-- External storage root (for legacy devices) -->
+    <external-path
+        name="external_storage"
+        path="." />
+
+</paths>

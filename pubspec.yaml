@@ -1,0 +1,200 @@
+name: smart_safety_app
+description: Smart Women Safety App with AI-Powered Danger Prediction
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  provider: ^6.1.1
+
+  # Firebase Core
+  firebase_core: ^3.6.0
+  firebase_auth: ^5.3.1
+  cloud_firestore: ^5.4.4
+  firebase_database: ^11.1.4
+  firebase_storage: ^12.3.4
+  firebase_messaging: ^15.1.4
+  firebase_analytics: ^11.3.4
+  firebase_crashlytics: ^4.1.4
+
+  # Google Sign-In
+  google_sign_in: ^6.2.1
+
+  # Phone Auth / OTP
+  firebase_phone_auth_handler: ^1.1.0+1
+
+  # HTTP & Networking
+  dio: ^5.7.0
+  http: ^1.2.2
+  connectivity_plus: ^6.1.0
+  internet_connection_checker_plus: ^2.5.1
+  camera: ^0.11.0+2
+
+  # Secure Storage
+  flutter_secure_storage: ^9.2.2
+
+  # Local Storage
+  shared_preferences: ^2.3.2
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  telephony: ^0.2.0
+
+  # Maps & Location
+  google_maps_flutter: ^2.9.0
+  geolocator: ^13.0.2
+  geocoding: ^3.0.0
+  flutter_polyline_points: ^2.0.1
+
+  # Sensors & Hardware
+  sensors_plus: ^4.0.2
+  battery_plus: ^6.0.3
+
+  # Audio & Recording
+  record: ^5.0.4
+  audioplayers: ^6.1.0
+  permission_handler: ^11.3.1
+
+  # Background Services
+  flutter_background_service: ^5.0.9
+  flutter_local_notifications: ^17.2.3
+  workmanager: ^0.6.0
+
+  # On-device ML
+  tflite_flutter: ^0.10.4
+
+  # UI Components
+  lottie: ^3.1.3
+  shimmer: ^3.0.0
+  cached_network_image: ^3.4.1
+  flutter_svg: ^2.0.10+1
+  photo_view: ^0.15.0
+  image_picker: ^1.1.2
+  image_cropper: ^8.0.2
+
+  # Animations
+  animate_do: ^3.3.4
+  flutter_animate: ^4.5.0
+
+  # Charts & Analytics
+  fl_chart: ^0.69.0
+  syncfusion_flutter_charts: ^27.1.48
+
+  # Contacts
+  flutter_contacts: ^1.1.9+2
+
+  # Communication
+  url_launcher: ^6.3.1
+  share_plus: ^10.1.2
+
+  # Utils
+  intl: ^0.19.0
+  uuid: ^4.5.1
+  crypto: ^3.0.6
+  encrypt: ^5.0.3
+  logger: ^2.4.0
+  json_annotation: ^4.9.0
+  equatable: ^2.0.5
+  dartz: ^0.10.1
+  get_it: ^8.0.3
+  injectable: ^2.5.0
+
+  # Network
+  web_socket_channel: ^3.0.1
+  socket_io_client: ^2.0.3+1
+
+  # Device Info
+  device_info_plus: ^11.1.1
+  package_info_plus: ^8.1.1
+
+  # Biometric
+  local_auth: ^2.3.0
+
+  # PDF Generation
+  pdf: ^3.11.1
+  printing: ^5.13.2
+
+  # File System — required by SOS audio/photo evidence (sos_service.dart)
+  path_provider: ^2.1.5
+
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  build_runner: ^2.4.13
+  json_serializable: ^6.8.0
+  hive_generator: ^2.0.1
+  injectable_generator: ^2.6.2
+  mockito: ^5.4.4
+  flutter_launcher_icons: ^0.13.1
+  vibration: ^2.0.0
+
+
+# Fix record_linux vs record_platform_interface mismatch
+dependency_overrides:
+  record_platform_interface: ^1.4.0
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: false
+  image_path: "assets/icons/app_icon.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/icons/app_icon.png"
+  web:
+    generate: false
+  windows:
+    generate: false
+
+flutter:
+  uses-material-design: true
+
+  # ✅ FIX for crash #4 (PlatformAssetBundle.loadBuffer, 9 events):
+  #
+  # Root cause: Flutter's asset loader calls loadBuffer() for every path
+  # declared under `assets:`. If the corresponding folder does not exist in
+  # the project at build time the APK/IPA is produced with broken asset
+  # manifests. At runtime, any widget that tries to load one of those assets
+  # (Lottie animations, SVG icons, ML model files, audio files) throws:
+  #   "Unable to load asset: assets/..."
+  # which propagates as an unhandled PlatformException and is recorded by
+  # Crashlytics as a fatal error.
+  #
+  # Two-part fix:
+  #   1. List ONLY asset entries that correspond to folders / files that
+  #      actually exist in the repo. Speculative or future folders that have
+  #      not been created yet are removed from this list.
+  #   2. The google.png icon is now listed under its parent directory entry
+  #      `assets/icons/` rather than as a duplicate explicit path — Flutter
+  #      automatically includes all files in a declared directory, so the
+  #      separate `- assets/icons/google.png` entry was redundant and could
+  #      cause a double-registration warning on some Flutter versions.
+  #
+  # ACTION REQUIRED: If any of the folders below do not yet exist in your
+  # project, create them with a placeholder file (e.g. `.gitkeep`) so that
+  # Flutter's asset bundler can index them. Alternatively remove the entry
+  # for any folder that doesn't exist yet and add it back when you add files.
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/animations/
+    - assets/ml_models/
+    - assets/audio/
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
