@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🛡️ SafeHer — Smart Women Safety Prediction System
 
 ![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?style=for-the-badge&logo=flutter)
@@ -77,3 +78,7 @@ Upon an SOS trigger, the `EvidenceOrchestrator` launches a stealth capture seque
    ```bash
    git clone [https://github.com/Mahendar123-indian/smart_safety_app.git](https://github.com/Mahendar123-indian/smart_safety_app.git)
    cd smart_safety_app
+=======
+# smart-women-safety-app
+A Flutter and Firebase based Women Safety Application that provides SOS emergency alerts, real-time location tracking, emergency contact notifications, Google Maps integration, and secure user authentication to enhance women's safety and emergency response.
+>>>>>>> 3f85105a8bd9dc110251ae369e2691c4282df689
